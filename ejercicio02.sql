@@ -1,11 +1,11 @@
--- ? Creamos la base de datos
-CREATE DATABASE sena;
+-- Creamos la base de datos
+   CREATE DATABASE sena;
 
--- ? Seleccionamos la base de datos ---> Use sena
-USE sena;
+-- Seleccionamos la base de datos ---> Use sena
+   USE sena;
 
--- ? CREATE TABLE <table> ----> creamos la tabla
-CREATE TABLE aprendices(
+--  CREATE TABLE <table> ----> creamos la tabla
+  CREATE TABLE aprendices(
     id INT (20) AUTO_INCREMENT UNIQUE PRIMARY KEY,
     nombre_apellido VARCHAR (50) UNIQUE NOT NULL,
     correo VARCHAR(50) UNIQUE NOT NULL,
@@ -16,10 +16,7 @@ CREATE TABLE aprendices(
     creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- ? Insertamos los datos a la tabla
-
-
-
+--  Insertamos los datos a la tabla
 
 INSERT INTO aprendices(id, nombre_apellido, correo, edad, direccion, ciudad, estado) VALUES ( 1077978541, "Gildardo Ramirez Macias", "gil128o@gmail.com", 28, "calle 3 sur # 23-9", "Garzon", "Activo");
 INSERT INTO aprendices(id, nombre_apellido, correo, edad, direccion, ciudad, estado) VALUES ( 1098645531, "Monica Andre Polanco", "andreapolanco@gmail.com", 39, "calle 3 norte # 23-9", "Agrado", "Activo");
