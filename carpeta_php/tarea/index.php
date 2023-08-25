@@ -1,25 +1,19 @@
-<!doctype html>
-<html lang="es">
-  <head>
-
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 	<link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
+    <title>Document</title>
+</head>
+<body>
 
-
-    
-
-    <title> Lista de Tareas</title>
-  </head>
-  
-  <body>
-  
-  	<?php require 'configurar.php'; ?>
-
-  	<div class="container-fluid">
+    <?php require 'config.php';?>
+    <main>
+     
+    <div class="container-fluid">
   		<div class="col-md-12 mb-2 mt-2">
   			<div class="row justify-content-center">
   				<button class="btn btn-primary " data-toggle="modal" data-target="#exampleModal"><i class="fa-solid fa-circle-plus"></i> Adicionar_Tarea</button>
@@ -41,7 +35,7 @@
 				  <body>
 			  		<?php 
 
-			  		$listatarea = "SELECT * FROM tareas ORDER BY id DESC";
+			  		$listatarea = "SELECT * FROM tarea ORDER BY id DESC";
 			  		$listatarea = $pdo->query($listatarea);
 
 			  		if ($listatarea->rowCount() > 0) {
@@ -49,10 +43,11 @@
 			  				echo '<tr>';
 			  				echo '<td>'.$tarea['Nombre_Alumno'].'</td>';
 			  				echo '<td>'.$tarea['Tareas_Asignadas'].'</td>';
+                            echo '<td>'.$tarea['Descripcion'].'</td>';
 			  				echo '<td>'.$tarea['Fecha_Inicio'].'</td>';
-                              echo '<td>'.$tarea['Fecha_Final'].'</td>';
-			  				echo '<td><button class="btn btn-primary" data-toggle="modal" data-target="#modal2'.$tarea['id'].'"> <i class="fa-solid fa-pen-to-square"></i> Editar</button>		  			
-				      	 			  <a href="excluir.php?id='.$tarea['id'].'"><button onclick="return confirm(\'Esta seguro que desea eliminar?\');" type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Eliminar</button></a></td>';			  			
+                            echo '<td>'.$tarea['Fecha_Final'].'</td>';
+			  				echo '<td><button class="btn btn-primary" data-toggle="modal" data-target="#modal2'.$tarea['id'].'"> <i class="fa-solid fa-pen-to-square"></i></button>		  			
+				      	 			  <a href="excluir.php?id='.$tarea['id'].'"><button onclick="return confirm(\'Esta seguro que desea eliminar?\');" type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button></a></td>';			  			
 			  				echo '<tr>';
 
 							echo '<!-- Modal Editar -->
@@ -71,6 +66,7 @@
 									      <input id="id" class="form-control" value="'.$tarea['id'].'" name="id" type="hidden"> 									    
 									      <input type="text" class="form-control" placeholder="Nombre_Alumno" name="Nombre_Alumno" value="'.$tarea['Nombre_Alumno'].'" required autofocus>    
 									      <input type="Tareas_Asignadas" class="form-control" placeholder="e-mail" name="Tareas_Asignadas" value="'.$tarea['Tareas_Asignadas'].'" required>
+                                          <input type="Descripcion" class="form-control" placeholder="e-mail" name="Descripcion" value="'.$tarea['Descripcion'].'" required>
 										  <input type="number" class="form-control" placeholder="Fecha_Inicio" name="Fecha_Inicio" value="'.$tarea['Fecha_Inicio'].'" required>
                                           <input type="number" class="form-control" placeholder="Fecha_Final" name="Fecha_Final" value="'.$tarea['Fecha_Final'].'" required>
 									      <button class="btn btn-lg btn-primary btn-block" type="submit">Actualizar datos</button>
@@ -106,8 +102,9 @@
 			<form method="post" action="inserir.php" class="form-signin">
 				<input type="text" class="form-control" placeholder="Nombre_Alumno" name="Nombre_Alumno" required autofocus>      
 				<input type="Tareas_Asignadas" class="form-control" placeholder="e-mail" name="Tareas_Asignadas" required>
-				<input type="number" class="form-control" placeholder="Fecha_Inicio" name="Fecha_Inicio" required>
-                <input type="number" class="form-control" placeholder="Fecha_Final" name="Fecha_Final" required>
+                <input type="Descripcion" class="form-control" placeholder="Descripcion" name="Descripcion" required>
+				<input type="date" class="form-control" placeholder="Fecha_Inicio" name="Fecha_Inicio" required>
+                <input type="date" class="form-control" placeholder="Fecha_Final" name="Fecha_Final" required>
 				<button class="btn btn-lg btn-primary btn-block" type="submit"><i class="fa-solid fa-floppy-disk"></i> Ingresar tarea</button>
 			
 			</form>
@@ -115,9 +112,11 @@
 	    </div>
 	  </div>
 	</div>
-	<!-- Modal Adicionar -->	
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </main>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="http://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -126,8 +125,5 @@
 		var tabla =document.querySelector("#tabla")
 		var datatable= new DataTable(tabla)
 	 </script> 	
-	
-	
 
-  </body>
 </html>
